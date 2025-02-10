@@ -12,6 +12,7 @@ resource "aws_cloudwatch_metric_alarm" "cw_cpu_metric" {
   statistic                 = "Average"
   threshold                 = 80
   alarm_description         = "This metric monitors ec2 cpu utilization"
+  alarm_actions             = [aws_sns_topic.sns_topic.arn]  
   insufficient_data_actions = []
 }
 
@@ -25,6 +26,7 @@ resource "aws_cloudwatch_metric_alarm" "cw_network_inbound_high_metric" {
   statistic                 = "Average"
   threshold                 = 100000000  # Example: 100 MB threshold
   alarm_description         = "Alarm triggers when network inbound exceeds 100 MB"
+  alarm_actions             = [aws_sns_topic.sns_topic.arn] 
   insufficient_data_actions = []
 }
 
@@ -39,6 +41,7 @@ resource "aws_cloudwatch_metric_alarm" "network_outbound_high_metric" {
   statistic                 = "Average"
   threshold                 = 100000000  # Example: 100 MB threshold
   alarm_description         = "Alarm triggers when network outbound exceeds 100 MB"
+  alarm_actions             = [aws_sns_topic.sns_topic.arn] 
   insufficient_data_actions = []
 }
 
